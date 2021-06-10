@@ -60,4 +60,8 @@ gem "react_on_rails", "~> 12.2"
 gem 'mini_racer', platforms: :ruby
 
 #FILE UPLOADING
+gem 'mini_magick'
 gem 'carrierwave'
+
+#FAKE DATA
+gem 'faker'

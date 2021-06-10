@@ -1,1 +1,10 @@
-
+<%=
+  react_component("App", props:
+    {
+      data: {
+        form_fields: @user.generate_react_form_fields
+      }
+    },
+    prerender: true
+  )
+%>

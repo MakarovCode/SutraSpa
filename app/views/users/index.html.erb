@@ -1,13 +1,12 @@
-<ul class="collection">
+<ul class="collection with-header">
   <li class="collection-header">
     <h4>Users List</h4>
   </li>
   <% @users.each do |user| %>
   <li class="collection-item avatar">
-    <img src="images/yuna.jpg" alt="" class="circle">
-    <%= image_tag user.photo.thumbnail.url, alt: user.name, class: "circle" %>
+    <%= image_tag user.photo.thumbnail.url, alt: user.full_name, class: "circle" %>
     <span class="title">
-      <%= user.full_name %>
+      <%= link_to user.full_name, user %>
     </span>
     <p>
       <strong>Email: </strong>
@@ -20,9 +19,9 @@
         <%= user.phone%>
       </a>
     </p>
-    <a href="javascript:void(0)" class="secondary-content">
+    <%= link_to user, class: "secondary-content" do %>
       <i class="material-icons">arrow_forward</i>
-    </a>
+    <% end %>
   </li>
   <% end %>
 </ul>
