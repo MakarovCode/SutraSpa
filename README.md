@@ -17,6 +17,10 @@ Technical Challenge for Sutra Senior Full-Stack Ruby on Rails + ReacJS Developer
     * Version 6.1;
 * PostgreSQL;
     * 12;
+* Materialize CDN;
+    * For some nice styling;
+* Faker GEM;
+    * For populating the database;
 
 # Sutra Developer Onboarding Task
 Create SPA that has two different states: “**Reading**” and “**Editing**”.
@@ -60,7 +64,7 @@ For example: the default background color setting is #fff (white).  When the use
 
 git clone https://github.com/MakarovCode/SutraSpa.git
 
-# 2. Run bundle
+# 2. Run bundle and make sure you install the 2.7.1 ruby version or change this number in the gem file and delete the .ruby-version file
 
 bundle
 
