@@ -6,7 +6,7 @@
   <li class="collection-item avatar">
     <%= image_tag user.photo.thumbnail.url, alt: user.full_name, class: "circle" %>
     <span class="title">
-      <%= link_to user.full_name, user %>
+      <%= user.full_name %> <%= link_to "@#{user.username}", user %>
     </span>
     <p>
       <strong>Email: </strong>
