@@ -19,24 +19,35 @@ class User < ApplicationRecord
   def generate_react_form_fields
     fields = {}
     self.class.attribute_names.each do |attr|
-      fields[attr] = {
-        name: attr,
-        type: self.class.get_attribute_type(attr),
-        value: nil,
-        placeholder: "Write a #{attr}"
-      }
+      if self.class.editables.include?(attr)
+        fields[attr] = {
+          name: attr,
+          type: self.class.get_attribute_type(attr),
+          value: attr == "photo" ? self.photo.url : self[attr],
+          placeholder: "Write a #{attr}"
+        }
+      end
     end
+    fields
   end
 
   private
+
+  def self.editables
+    ["username", "first_name", "last_name", "email", "phone", "photo", "bio", "bg_color"]
+  end
 
   def self.get_attribute_type(attr)
     case User.attribute_types[attr].class.name
     when "ActiveModel::Type::String"
       if attr == "email"
         "email"
+      elsif attr == "photo"
+        "file"
       elsif attr == "phone"
         "tel"
+      elsif attr == "bg_color"
+        "color"
       else
         "text"
       end

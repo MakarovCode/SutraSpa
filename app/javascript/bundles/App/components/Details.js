@@ -4,72 +4,49 @@ import PropTypes from 'prop-types'
 class Details extends React.Component {
 
 	state = {
-		fields: this.props.fields,
-		apiStores: {}
-	}
-
-	handleSubmit = async (event) => {
-    event.preventDefault();
-
-		const res = await axios.post(`${this.props.apiMethod}`, {requisition: this.state.fields});
-		console.log(res);
-		this.props.onCreateCallback(res.requisition.id);
-  }
-
-	onChange = (event, field) => {
-		field.value = event.target.value;
-		this.setState({
-			fields: {...this.props.fields}
-		})
-	}
-
-	getAsyncApiStore = async (api_store) => {
-		if (this.state.apiStores[api_store] == null){
-			const res = await axios.get(`${api_store}`);
-
-			this.setState({
-				fields: {...this.props.fields},
-				apiStores: {...this.state.apiStores, [api_store]: res.data}
-			})
-		}
-		return this.state.apiStores[api_store]
-	}
-
-	getApiStore = (api_store) => {
-		return this.state.apiStores[api_store] != null ? this.state.apiStores[api_store] : [];
+		fields: this.props.fields
 	}
 
 	render() {
-  	return (
-			<div>
-				<form onSubmit={this.handleSubmit}>
-					{Object.values(this.props.fields).map(field =>
-						field.type !== "select" ? (
-							<Input
-								key={field.name}
-								onChange={this.onChange}
-								field={field}
-							/>
-						) : (
-							<Select
-								key={field.name}
-								getOptionsFromApi={this.getAsyncApiStore}
-								getOptions={this.getApiStore}
-								onChange={this.onChange}
-								field={field}
-							/>
-						)
-					)}
-					<button>Empezar</button>
-				</form>
+		return (
+			<div className="row">
+				<div className="col s12">
+					<div className="card" style={{border: `5px solid ${this.props.fields.bg_color.value}`}}>
+						<div className="card-image">
+							<img src={this.props.fields.photo.value} />
+							<span className="card-title" style={{color: `${this.props.fields.bg_color.value}`}}>
+								{this.props.fields.username.value}
+							</span>
+							<a className="btn-floating halfway-fab waves-effect waves-light" onClick={event => this.props.setEditing()}>
+								<i className="material-icons">edit</i>
+							</a>
+						</div>
+						<div className="card-content">
+							<p>
+								<strong>First Name:</strong>	{this.props.fields.first_name.value}
+							</p>
+							<p>
+								<strong>Last Name:</strong>	{this.props.fields.last_name.value}
+							</p>
+							<p>
+								<strong>Email:</strong>	{this.props.fields.email.value}
+							</p>
+							<p>
+								<strong>Phone:</strong>	{this.props.fields.phone.value}
+							</p>
+							<p>
+								<strong>Bio:</strong>	{this.props.fields.bio.value}
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
-    );
-  }
-
+		);
+	}
 }
 
-Form.propTypes = {
-  fields: PropTypes.object.isRequired,
+Details.propTypes = {
+	fields: PropTypes.object.isRequired,
 };
 
 export default Details;

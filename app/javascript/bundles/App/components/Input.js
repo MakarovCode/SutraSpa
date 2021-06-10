@@ -5,12 +5,23 @@ class Input extends React.Component {
 
   render () {
     return (
-      <input key={this.props.field.name} type={this.props.field.type}
-        placeholder={this.props.field.placeholder}
-        value={this.props.field.value}
-        onChange={event => this.props.onChange(event, this.props.field)}
-        required={this.props.field.required}
-      />
+      <div className="input-field col s12">
+        <i className="material-icons prefix">keyboard_arrow_right</i>
+        <input
+          id={this.props.field.name}
+          key={this.props.field.name}
+          type={this.props.field.type}
+          value={this.props.field.value}
+          onChange={event => this.props.onChange(event, this.props.field)}
+          required={this.props.field.required}
+        />
+        <label
+          for={this.props.field.name}
+          className={`${this.props.field.value ? 'active' : ''}`}
+          >
+          {this.props.field.placeholder}
+        </label>
+      </div>
     )
   }
 }

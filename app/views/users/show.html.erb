@@ -2,7 +2,8 @@
   react_component("App", props:
     {
       data: {
-        form_fields: @user.generate_react_form_fields
+        form_fields: @user.generate_react_form_fields,
+        api_method: "/api/v1/users/#{@user.id}"
       }
     },
     prerender: true

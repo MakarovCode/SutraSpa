@@ -9,7 +9,23 @@ class Api::V1::UsersController < ApiController
       }
     else
       render status: 411, json: {
-        errors: user.errors.as_json
+        message: user.errors.full_messages.to_sentence
+      }
+    end
+  end
+
+  def upload_photo
+    user = User.find params[:id]
+    user.photo = params[:file]
+
+    if user.save
+      render status: 200, json: {
+        message: "User photo was succesfully uploaded",
+        url: user.photo.url
+      }
+    else
+      render status: 411, json: {
+        message: user.errors.full_messages.to_sentence
       }
     end
   end

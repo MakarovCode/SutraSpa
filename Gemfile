@@ -65,3 +65,4 @@ gem 'carrierwave'
 
 #FAKE DATA
 gem 'faker'
+gem 'mini_racer', platforms: :ruby
