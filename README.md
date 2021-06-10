@@ -4,6 +4,10 @@ Technical Challenge for Sutra Senior Full-Stack Ruby on Rails + ReacJS Developer
 # DEMO
 [Sutra SPA](https://sutra-spa.herokuapp.com/) - Test the web app
 
+# Have in Mind
+
+Heroku will destroy public assets like images after a period of time after they where uploaded
+
 
 # TECHNOLOGIES USED AND CHALLENGES
 * Since the Tech Stack used in Sutra products is Ruby on Rails + JQuery + Javascript and is currenty in a migration to ReactJS I decided to apply both technologies for this excerise, the API is full Rails, and the Fronend have two main views index.html.erb (made with pure Rails) and show.html.erb (rendering React Components with the help of the ReactOnRails gem)
