@@ -44,6 +44,29 @@ class Form extends React.Component {
 		})
 	}
 
+	onSave = async () => {
+    const params = {
+      user: {
+        username: this.props.fields.username.value,
+        first_name: this.props.fields.first_name.value,
+        last_name: this.props.fields.last_name.value,
+        phone: this.props.fields.phone.value,
+        email: this.props.fields.email.value,
+        bio: this.props.fields.bio.value,
+        bg_color: this.props.fields.bg_color.value,
+      }
+    }
+    await axios.put(`${this.props.apiMethod}.json`, params)
+    .then(res => {
+      M.toast({html: res.data.message});
+      this.props.setEditing();
+    })
+    .catch((error) => {
+      M.toast({html: error.response.data.message});
+    });
+
+  }
+
 	render() {
 		return (
 			<div>
@@ -84,6 +107,15 @@ class Form extends React.Component {
 							)
 						)
 					)}
+					<button
+            style={{marginTop: "40px"}}
+            className="btn waves-effect waves-light"
+            type="button"
+            onClick={event => this.onSave()}
+            >
+            Save
+            <i className="material-icons right">save</i>
+          </button>
 				</form>
 			</div>
 		);
