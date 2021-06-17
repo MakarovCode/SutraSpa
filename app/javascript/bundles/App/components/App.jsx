@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import User from "./User"
 
 class App extends React.Component {
-
+  
   render () {
     return (
       <User data={this.props.data} />

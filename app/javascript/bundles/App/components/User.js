@@ -20,14 +20,6 @@ class User extends React.Component {
     });
   }
 
-  onChange = (event) => {
-    console.log(event.target.value);
-    this.setState({
-      id: this.props.data.id,
-      editing: event.target.value == "on" ? true : false
-    })
-  }
-
   render () {
     return (
       <div>
