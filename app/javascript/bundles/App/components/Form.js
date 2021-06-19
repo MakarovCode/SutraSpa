@@ -91,14 +91,14 @@ class Form extends React.Component {
 					{Object.values(this.props.fields).map(field =>
 						field.type !== "textarea" && field.type !== "file" ? (
 							<Input
-								key={field.name}
+								key={`input-${field.name}`}
 								onChange={this.onChange}
 								field={field}
 								/>
 						) : (
 							field.type === "textarea" ? (
 								<TextArea
-									key={field.name}
+									key={`textarea-${field.name}`}
 									onChange={this.onChange}
 									field={field}
 									/>
@@ -113,7 +113,7 @@ class Form extends React.Component {
             type="button"
             onClick={event => this.onSave()}
             >
-            Save
+            Save Profile
             <i className="material-icons right">save</i>
           </button>
 				</form>

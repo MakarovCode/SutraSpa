@@ -10,6 +10,7 @@ Rails.application.routes.draw do
           post "upload_photo"
         end
       end
+      resources :interests, only: [:index, :update]
     end
   end
 
