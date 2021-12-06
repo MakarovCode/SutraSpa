@@ -37,9 +37,9 @@ ActiveAdmin.register User do
 
     #### Nota: Con Excel
     User.csv_load(params[:file])
-    render "csv_load"
 
-    redirect_to csv_load_admin_users_path, alert: "Invitados cargados"
+
+    redirect_to admin_users_path, notice: "Invitados cargados"
   end
 
   collection_action :csv_load, method: :get, title: "Carga por excel" do
