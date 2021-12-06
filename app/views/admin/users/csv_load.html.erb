@@ -1,0 +1,23 @@
+
+<%= form_tag do_csv_load_admin_users_path, method: :post, multipart: true, class: "formtastic" do %>
+<fieldset class="inputs">
+	<ol>
+		<li class="string input optional stringish" id="activity_code_input">
+			<label for="activity_code" class="label">
+				Archivo Excel
+			</label>
+			<%= file_field_tag :file, class: "form-control" %>
+		</li>
+	</ol>
+</fieldset>
+<fieldset class="actions">
+	<ol>
+		<li class="action input_action " id="activity_submit_action">
+			<input type="submit" name="commit" value="Cargar archivo" data-disable-with="Crear archivo">
+		</li>
+		<li class="cancel">
+			<%= link_to "Cancelar", admin_users_path %>
+		</li>
+	</ol>
+</fieldset>
+<% end %>

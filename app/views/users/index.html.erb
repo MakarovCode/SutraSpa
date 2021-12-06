@@ -1,27 +1,17 @@
-<ul class="collection with-header">
-  <li class="collection-header">
-    <h4>Users List</h4>
-  </li>
-  <% @users.each do |user| %>
-  <li class="collection-item avatar">
-    <%= image_tag user.photo.thumbnail.url, alt: user.full_name, class: "circle" %>
-    <span class="title">
-      <%= user.full_name %> <%= link_to "@#{user.username}", user %>
-    </span>
-    <p>
-      <strong>Email: </strong>
-      <a href="mailto:<%= user.email%>">
-        <%= user.email%>
-      </a>
-      <br>
-      <strong>Phone: </strong>
-      <a href="tel:<%= user.phone%>">
-        <%= user.phone%>
-      </a>
-    </p>
-    <%= link_to user, class: "secondary-content" do %>
-      <i class="material-icons">arrow_forward</i>
+<div class="row">
+  <div class="col s12">
+    <h1>Bienvenidos</h1>
+    <%= form_tag('/users', method: :get) do %>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="icon_prefix" type="text" name="document" class="validate">
+        <label for="icon_prefix">Cédula</label>
+      </div>
+      <div>
+        <button type="submit" class="waves-effect waves-light btn-large">Entrar</button>
+      </div>
+    </div>
     <% end %>
-  </li>
-  <% end %>
-</ul>
+  </div>
+</div>

@@ -9,13 +9,6 @@ class User < ApplicationRecord
   has_many :user_interest_objects
   has_many :interest_objects, through: :user_interest_objects
 
-  validates :username, :first_name, :last_name, :email, :phone, :bio, :bg_color, presence: true
-
-  validates :username, :email, :phone, uniqueness: true
-
-  validates :email, format: { with: VALID_EMAIL_REGEX }
-  validates :phone, format: { with: VALID_PHONE_REGEX }
-
   mount_uploader :photo, PhotoUploader
 
   def full_name
@@ -51,6 +44,19 @@ class User < ApplicationRecord
   def save_interest_objects(objects)
     objects.each do |obj|
       self.user_interest_objects.create interest_object_id: obj["id"]
+    end
+  end
+
+  def self.csv_load(file)
+
+    xlsx = Roo::Spreadsheet.open(file)
+    sheet = xlsx.sheet(0)
+
+    sheet.parse(headers: true).each_with_index do |row, index|
+      puts "===> SHEET IN #{index} ROW: #{row} "
+      if index > 0
+        User.create first_name: row["Nombres"], last_name: row["Apellidos"], document: row["Cedula"], table: row["Mesa"]
+      end
     end
   end
 end

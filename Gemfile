@@ -68,3 +68,7 @@ gem 'rabl'
 #FAKE DATA
 gem 'faker'
 gem 'mini_racer', platforms: :ruby
+
+gem 'devise'
+gem 'activeadmin'
+gem 'roo'
