@@ -4,7 +4,9 @@ class UsersController < ApplicationController
     @users = User.all.order(first_name: :asc)
     unless params[:document].blank?
       user = @users.find_by_document params[:document]
-      redirect_to user_path(user)
+      unless user.nil?
+        redirect_to user_path(user)
+      end
     end
   end
 
