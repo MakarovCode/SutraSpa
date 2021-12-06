@@ -1,6 +1,5 @@
 ActiveAdmin.register User do
 
-
   permit_params :first_name, :last_name, :document, :table
 
   filter :document
@@ -11,6 +10,13 @@ ActiveAdmin.register User do
     link_to("Subir excel", csv_load_admin_users_path)
   end
 
+  index do
+    column :document
+    column :first_name
+    column :last_name
+    column :table
+    actions
+  end
 
   form do |f|
     f.inputs "Datos invitado"  do
@@ -33,6 +39,7 @@ ActiveAdmin.register User do
     User.csv_load(params[:file])
     render "csv_load"
 
+    redirect_to csv_load_admin_users_path, alert: "Invitados cargados"
   end
 
   collection_action :csv_load, method: :get, title: "Carga por excel" do

@@ -55,7 +55,12 @@ class User < ApplicationRecord
     sheet.parse(headers: true).each_with_index do |row, index|
       puts "===> SHEET IN #{index} ROW: #{row} "
       if index > 0
-        User.create first_name: row["Nombres"], last_name: row["Apellidos"], document: row["Cedula"], table: row["Mesa"]
+        user = User.find_by_document row["Cedula"]
+        if user.nil?
+          User.create first_name: row["Nombres"], last_name: row["Apellidos"], document: row["Cedula"], table: row["Mesa"]
+        else
+          user.update first_name: row["Nombres"], last_name: row["Apellidos"], document: row["Cedula"], table: row["Mesa"]
+        end
       end
     end
   end
